@@ -27,6 +27,46 @@ document.addEventListener("DOMContentLoaded", () => {
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
         `;
 
+        // Participants section (rendered below as DOM nodes)
+        const participants = Array.isArray(details.participants) ? details.participants : [];
+        const participantsSection = document.createElement("div");
+        participantsSection.className = "participants-section";
+
+        const heading = document.createElement("h5");
+        heading.textContent = `Participants (${participants.length})`;
+        participantsSection.appendChild(heading);
+
+        if (participants.length > 0) {
+          const ul = document.createElement("ul");
+          ul.className = "participants-list";
+
+          participants.forEach((p) => {
+            const li = document.createElement("li");
+
+            const avatar = document.createElement("span");
+            avatar.className = "participant-avatar";
+            // generate simple initials from the portion before '@'
+            const namePart = String(p).split("@")[0] || "";
+            avatar.textContent = namePart.slice(0, 2).toUpperCase();
+
+            const nameSpan = document.createElement("span");
+            nameSpan.className = "participant-name";
+            nameSpan.textContent = p;
+
+            li.appendChild(avatar);
+            li.appendChild(nameSpan);
+            ul.appendChild(li);
+          });
+
+          participantsSection.appendChild(ul);
+        } else {
+          const noP = document.createElement("p");
+          noP.className = "no-participants";
+          noP.textContent = "No participants yet — be the first!";
+          participantsSection.appendChild(noP);
+        }
+
+        activityCard.appendChild(participantsSection);
         activitiesList.appendChild(activityCard);
 
         // Add option to select dropdown
