@@ -157,6 +157,7 @@ footer {
 }
 
 .participants-list {
+  /* hide default bullets */
   list-style: none;
   padding: 0;
   margin: 0;
@@ -176,6 +177,25 @@ footer {
   box-shadow: 0 1px 0 rgba(0,0,0,0.02);
   font-size: 14px;
   color: #333;
+}
+
+/* small delete button for each participant */
+.participant-delete {
+  margin-left: auto; /* push to far right */
+  background: transparent;
+  border: none;
+  color: #c62828;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 4px;
+}
+.participant-delete:hover {
+  background: rgba(198,40,40,0.08);
+}
+
+.participant-delete:focus {
+  outline: 2px solid rgba(26,35,126,0.12);
 }
 
 .participant-avatar {
